@@ -1,0 +1,48 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}
+main {
+    padding: 0 100px 30px 100px;
+}
+
+footer {
+    display: grid;
+    place-items: center;
+}
+
+.navbar {
+    position: sticky;
+    top:0;
+    font-family: serif;
+    font-style: italic;
+    color: black;
+    background-color: rgba(255,255,255,0.8);
+    padding: 30px;
+}
+
+.navbar:visited {
+    color: darkred;
+}
+
+.navbar > ul {
+    display: inline;
+    text-align: center;
+
+}
+
+.navbar > ul > li:nth-child(1) {
+    display: block;
+}
+
+.navbar > ul > li {
+    display: inline;
+    margin: 30px;
+}
+
+#home {
+    font-size: x-large;
+}
