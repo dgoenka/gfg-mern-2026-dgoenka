@@ -1,5 +1,4 @@
 // Runner to execute all question examples
-const path = require('path');
 const q4 = require('./q4_example');
 const q5 = require('./q5_example');
 const q6 = require('./q6_example');

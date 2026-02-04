@@ -25,3 +25,5 @@ function run() {
 }
 
 module.exports = { run, computeTotal };
+
+if (require.main === module) run();

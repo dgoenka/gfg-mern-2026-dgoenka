@@ -27,3 +27,6 @@ function run() {
 }
 
 module.exports = { run };
+
+// Run when executed directly
+if (require.main === module) run();

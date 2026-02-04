@@ -30,3 +30,5 @@ function run() {
 }
 
 module.exports = { run, getDayType };
+
+if (require.main === module) run();
