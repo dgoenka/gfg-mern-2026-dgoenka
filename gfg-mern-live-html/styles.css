@@ -1,0 +1,136 @@
+:root {
+    --general-width:500px;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.appheader{
+    font-style: italic;
+}
+
+#mainentryform {
+    width:  var(--general-width);
+    display: flex;
+    flex-direction: row-reverse;
+    gap:10px;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+#mainentry {
+    flex:1;
+    text-align: center;
+    resize: none;
+    font-family: serif;
+    line-height: normal;
+    min-height: 1.2em;
+    width: 100%;
+    z-index: 1; /* Ensure it is above the label */
+    position: relative;
+    background: transparent;
+}
+#mainentry-container {
+    flex:1;
+    display: flex;
+    align-items: center;      /* Vertically centers the text */
+    justify-content: center; /* Horizontally centers the text */
+    font-family: serif;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    line-height: normal;
+    min-height: 1.2em;
+}
+
+#mainentry-label {
+    color: #888;
+    pointer-events: none;      /* Clicks go "through" to the div */
+    user-select: none;         /* Prevents highlighting the label */
+    position: absolute;        /* Sits in the middle without pushing cursor */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+#mainentry:focus + #mainentry-label,
+#mainentry.has-content + #mainentry-label {
+    display: none !important;
+}
+
+#todolist {
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    width: var(--general-width);
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+li + li {
+    border-top: 1px solid #ccc; /* Adds a top border to every li that is preceded by another li */
+    padding-top: 10px;        /* Optional: adds space between the line and the content */
+    margin-top: 10px;         /* Optional: adds space above the line */
+}
+
+.listitem {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.listitem::before {
+    content: "➔";
+}
+
+.listitem button {
+    margin-left: auto;
+}
+
+h1 {
+    color: #007bff;
+    font-weight: bolder;
+    -webkit-text-stroke: 2px black;
+    font-family: serif;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    min-width: 100px; /* Added minimum width for all buttons */
+    flex-shrink: 0;  /* Prevent button from shrinking */
+}
+
+.delete {
+    background-color: #dc3545;
+}
+
+.delete:hover {
+    background-color: #b02e36;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
