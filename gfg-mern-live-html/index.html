@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="top">
 <h1 class="appheader">My To Do List</h1>
 <form id="mainentryform" class="data-entry-row">
-    <button type="submit">Add</button>
+    <button type="submit">╋</button>
     <div  id="mainentry-container">
         <div contenteditable="true"  id="mainentry"></div>
         <span id="mainentry-label">Describe Item</span>
     </div>
+    <label class="multiline-check-label" for="multiline">
+        <input class="multiline-check" type="checkbox" id="multiline" name="multiline"/>
+        Multiline
+    </label>
+
 </form>
+</div>
 <ul id="todolist"></ul>
 <script src="script.js"></script>
 </body>

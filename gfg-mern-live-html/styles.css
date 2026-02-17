@@ -1,5 +1,5 @@
 :root {
-    --general-width:500px;
+    --general-width:min(100vw, 500px);
 }
 
 *:focus {
@@ -10,15 +10,31 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    padding: 50px;
     display: flex;
+    margin: 0;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-
+.top {
+    width:100vw;
+    padding-top: 120px;
+    padding-bottom: 20px;
+    position: sticky;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0f0;
+}
 .appheader{
     font-style: italic;
+    background: #121FCF;
+    background: linear-gradient(to bottom, #121FCF 0%, #CFCFCF 65%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;    font-weight: bolder;
+    -webkit-text-stroke: 2px black;
+    font-family: serif;
 }
 
 #mainentryform {
@@ -28,6 +44,8 @@ body {
     gap:10px;
     align-items: stretch;
     justify-content: space-between;
+    position: relative;
+
 }
 
 #mainentry {
@@ -38,9 +56,12 @@ body {
     line-height: normal;
     min-height: 1.2em;
     width: 100%;
+    max-width: 100%;
     z-index: 1; /* Ensure it is above the label */
     position: relative;
     background: transparent;
+    flex-wrap: wrap;
+
 }
 #mainentry-container {
     flex:1;
@@ -54,6 +75,18 @@ body {
     line-height: normal;
     min-height: 1.2em;
 }
+
+.multiline-check-label{
+    position: absolute;
+    top:calc(100% + 5px);
+    left: 0;
+}
+.multiline-check-label,
+.multiline-check {
+    margin: 0;
+}
+
+
 
 #mainentry-label {
     color: #888;
@@ -104,33 +137,80 @@ li + li {
     margin-left: auto;
 }
 
-h1 {
-    color: #007bff;
-    font-weight: bolder;
-    -webkit-text-stroke: 2px black;
-    font-family: serif;
-}
 
 button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
-    min-width: 100px; /* Added minimum width for all buttons */
-    flex-shrink: 0;  /* Prevent button from shrinking */
+    min-width: 50px;
+    flex-shrink: 0;
+    height: min-content; /* Ensure button doesn't stretch */
+    /* 3D Effect */
+    box-shadow: 0 4px #0056b3;
+    transition: all 0.1s;
+    margin-bottom: 4px; /* Compensate for shadow */
+    animation: bluePulse 2s infinite ease-in-out;
+}
+
+@keyframes bluePulse {
+    0% {
+        text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 15px #00d4ff;
+    }
+    50% {
+        text-shadow:
+                0 0 8px #fff,
+                0 0 20px #00d4ff,
+                0 0 40px #00d4ff,
+                0 0 50px #0056b3; /* Wider, deeper blue expansion */
+    }
+    100% {
+        text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 15px #00d4ff;
+    }
+}
+
+button:hover {
+    background-color: #0069d9;
+    transform: translateY(-1px);
+    box-shadow: 0 6px #0056b3;
+}
+
+button:active {
+    background-color: #0056b3;
+    box-shadow: 0 0 #0056b3;
+    transform: translateY(4px);
 }
 
 .delete {
     background-color: #dc3545;
+    box-shadow: 0 4px #b02e36;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ffea00, 0 0 30px #ffae00;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #ffea00, 0 0 15px #ffae00;
+    }
 }
 
 .delete:hover {
-    background-color: #b02e36;
+    background-color: #c82333;
+    box-shadow: 0 6px #b02e36;
 }
 
-button:hover {
-    background-color: #0056b3;
+.delete:active {
+    background-color: #bd2130;
+    box-shadow: 0 0 #b02e36;
 }

@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     mainentry.addEventListener('keydown', function(event) {
+        let currentVals = new FormData(form);
+        let checked = currentVals.get('multiline');
+        if(checked=="on") return;
         if (event.key === 'Enter') {
             event.preventDefault();
             form.requestSubmit();
@@ -29,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
-        const entryItem = mainentry.textContent.trim();
+        const entryItem = mainentry.innerHTML;
         if (!entryItem) return;
 
         const todolist = document.getElementById('todolist');
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             li.remove();
         }
         const button = document.createElement('button');
-        button.innerHTML = "Delete";
+        button.innerHTML = "🗑";
         button.classList.add('delete');
         button.addEventListener('click', deleteMe);
         button.contentEditable = "false";
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const span = document.createElement('div');
         span.style.fontFamily="serif";
         span.contentEditable = "true";
-        span.textContent = entryItem;
+        span.innerHTML = entryItem
         div.appendChild(span);
 
         div.appendChild(button);
