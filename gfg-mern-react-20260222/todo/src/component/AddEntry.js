@@ -1,24 +1,20 @@
 import "../styles/styles.css";
+import React, {useContext, useRef, useState} from "react";
 import ToDoListContext from "../store/list";
-import {use, useCallback, useEffect, useRef, useState} from "react";
 import isEmpty from "lodash.isempty";
 import {isInterpretedEmpty} from "../util/xmldeserializer";
+import {getTextViaDOM} from "../util/GetTextViaDOM";
 
-const Placeholder = ({isEntryThere}) => <span className={["mainentry-label",isEntryThere() ? "has-content" : ""].join(" ")}>Describe Item</span>
+const Placeholder = React.memo(({isEntryThere}) => <span className={["mainentry-label",isEntryThere() ? "has-content" : ""].join(" ")}>Describe Item</span>);
 
+const getTextViaDomOFMainEntry = getTextViaDOM.bind({id: "mainEntry"});
 
 const AddEntry = ()=>{
     const [textContent, setTextContent] = useState("");
-    const checkedRef = useRef(null);
     const mainEntryRef = useRef(null);
-    const {addItem} = use(ToDoListContext);
+    const {addItem, isMultiline, setMultiline} = useContext(ToDoListContext);
     const isEntryThere = ()=> !isEmpty(textContent);
 
-    const getTextViaDOM = ()=>{
-        const mainEntryDomRef = document.getElementById("mainEntry");
-        console.log(mainEntryDomRef.innerHTML);
-        return mainEntryDomRef.innerHTML;
-    };
 
     const submitAndClear = (event)=> {
         if(event) event.preventDefault();
@@ -32,11 +28,11 @@ const AddEntry = ()=>{
 
     const onKeyDown = (event) =>{
 
-        console.log(checkedRef.current.checked);
+        console.log(isMultiline);
         console.log(event.data);
         console.log(event.data==="\n");
-        console.log(getTextViaDOM());
-        if(checkedRef.current.checked) return;
+        console.log(getTextViaDomOFMainEntry());
+        if(isMultiline) return;
         if (event.data === '\n') {
             event.preventDefault();
             submitAndClear();
@@ -44,13 +40,17 @@ const AddEntry = ()=>{
     }
 
     const onTextChanged = ()=>{
-        setTextContent(getTextViaDOM());
+        setTextContent(getTextViaDomOFMainEntry());
     }
 
     const onBlur = () =>{
         if(isInterpretedEmpty(textContent)){
             setTextContent("");
         }
+    }
+
+    const onCheck = (e) => {
+        setMultiline(e.target.checked);
     }
 
 
@@ -68,7 +68,7 @@ const AddEntry = ()=>{
 
             </div>
             <label className="multiline-check-label" htmlFor="multiline">
-                <input ref={checkedRef} className="multiline-check" type="checkbox" id="multiline" name="multiline"/>
+                <input className="multiline-check" type="checkbox" id="multiline" name="multiline" checked={isMultiline} onChange={onCheck}/>
                 Multiline
             </label>
         </form>
@@ -77,4 +77,4 @@ const AddEntry = ()=>{
 
 
 
-export default AddEntry;
+export default React.memo(AddEntry);

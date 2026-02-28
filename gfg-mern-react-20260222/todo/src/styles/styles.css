@@ -215,3 +215,80 @@ button:active {
     background-color: #bd2130;
     box-shadow: 0 0 #b02e36;
 }
+
+.complete {
+    background-color: #28a745;
+    box-shadow: 0 4px #1e7e34;
+    animation: greenPulse 2s infinite ease-in-out;
+}
+
+@keyframes greenPulse {
+    0% {
+        text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 15px #28a745;
+    }
+    50% {
+        text-shadow:
+                0 0 8px #fff,
+                0 0 20px #28a745,
+                0 0 40px #28a745,
+                0 0 50px #1e7e34;
+    }
+    100% {
+        text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 15px #28a745;
+    }
+}
+
+.complete:hover {
+    background-color: #218838;
+    box-shadow: 0 6px #1e7e34;
+}
+
+.complete:active {
+    background-color: #1e7e34;
+    box-shadow: 0 0 #1e7e34;
+}
+
+.incomplete {
+    background-color: #ffc107;
+    box-shadow: 0 4px #d39e00;
+    color: #212529;
+    animation: yellowPulse 2s infinite ease-in-out;
+}
+
+@keyframes yellowPulse {
+    0% {
+        text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 15px #ffc107;
+    }
+    50% {
+        text-shadow:
+                0 0 8px #fff,
+                0 0 20px #ffc107,
+                0 0 40px #ffc107,
+                0 0 50px #d39e00;
+    }
+    100% {
+        text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 15px #ffc107;
+    }
+}
+
+.incomplete:hover {
+    background-color: #e0a800;
+    box-shadow: 0 6px #d39e00;
+}
+
+.incomplete:active {
+    background-color: #d39e00;
+    box-shadow: 0 0 #d39e00;
+}
