@@ -7,8 +7,8 @@
 }
 
 .App {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
     color: #333;
     display: flex;
     margin: 0;
@@ -25,16 +25,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0f0;
+    background-color: #f8f9fad0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 .appheader{
     font-style: italic;
-    background: #121FCF;
-    background: linear-gradient(to bottom, #121FCF 0%, #CFCFCF 65%);
+    background: #3b82f6;
+    background: linear-gradient(to bottom, #3b82f6 0%, #93c5fd 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;    font-weight: bolder;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    -webkit-text-stroke: 1px #1e3a8a;
     font-family: serif;
+    margin-bottom: 20px;
 }
 
 .data-entry-row {
@@ -70,16 +74,20 @@
     justify-content: center; /* Horizontally centers the text */
     font-family: serif;
     position: relative;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
     line-height: normal;
     min-height: 1.2em;
+    background-color: white;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .multiline-check-label{
     position: absolute;
     top:calc(100% + 5px);
     left: 0;
+    font-size: 0.9em;
+    color: #64748b;
 }
 .multiline-check-label,
 .multiline-check {
@@ -89,7 +97,7 @@
 
 
 .mainentry-label {
-    color: #888;
+    color: #94a3b8;
     pointer-events: none;      /* Clicks go "through" to the div */
     user-select: none;         /* Prevents highlighting the label */
     position: absolute;        /* Sits in the middle without pushing cursor */
@@ -113,182 +121,168 @@
 li {
     width: var(--general-width);
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 li + li {
-    border-top: 1px solid #ccc; /* Adds a top border to every li that is preceded by another li */
-    padding-top: 10px;        /* Optional: adds space between the line and the content */
-    margin-top: 10px;         /* Optional: adds space above the line */
+    border-top: 1px solid #e2e8f0; /* Adds a top border to every li that is preceded by another li */
+    padding-top: 15px;        /* Optional: adds space between the line and the content */
+    margin-top: 15px;         /* Optional: adds space above the line */
 }
 
 .listitem {
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: flex-start;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .listitem::before {
     content: "➔";
+    color: #94a3b8;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: auto;
 }
 
 .listitem button {
-    margin-left: auto;
+    margin-left: 0;
 }
 
 
 button {
-    background-color: #007bff;
+    background-color: #3b82f6; /* Modern Blue */
     color: white;
     border: none;
     padding: 10px 20px;
     font-size: 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
     min-width: 50px;
     flex-shrink: 0;
     height: min-content; /* Ensure button doesn't stretch */
     /* 3D Effect */
-    box-shadow: 0 4px #0056b3;
+    box-shadow: 0 4px #1d4ed8;
     transition: all 0.1s;
     margin-bottom: 4px; /* Compensate for shadow */
-    animation: bluePulse 2s infinite ease-in-out;
+    animation: bluePulse 3s infinite ease-in-out;
 }
 
 @keyframes bluePulse {
     0% {
-        text-shadow:
-                0 0 4px #fff,
-                0 0 10px #fff,
-                0 0 15px #00d4ff;
+        box-shadow: 0 4px #1d4ed8, 0 0 0 rgba(59, 130, 246, 0);
     }
     50% {
-        text-shadow:
-                0 0 8px #fff,
-                0 0 20px #00d4ff,
-                0 0 40px #00d4ff,
-                0 0 50px #0056b3; /* Wider, deeper blue expansion */
+        box-shadow: 0 4px #1d4ed8, 0 0 10px rgba(59, 130, 246, 0.5);
     }
     100% {
-        text-shadow:
-                0 0 4px #fff,
-                0 0 10px #fff,
-                0 0 15px #00d4ff;
+        box-shadow: 0 4px #1d4ed8, 0 0 0 rgba(59, 130, 246, 0);
     }
 }
 
 button:hover {
-    background-color: #0069d9;
+    background-color: #2563eb;
     transform: translateY(-1px);
-    box-shadow: 0 6px #0056b3;
+    box-shadow: 0 6px #1d4ed8;
 }
 
 button:active {
-    background-color: #0056b3;
-    box-shadow: 0 0 #0056b3;
+    background-color: #1d4ed8;
+    box-shadow: 0 0 #1d4ed8;
     transform: translateY(4px);
 }
 
 .delete {
-    background-color: #dc3545;
-    box-shadow: 0 4px #b02e36;
-    animation: pulse 2s infinite alternate;
+    background-color: #ef4444; /* Modern Red */
+    box-shadow: 0 4px #b91c1c;
+    animation: redPulse 3s infinite ease-in-out;
 }
 
-@keyframes pulse {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #ffea00, 0 0 30px #ffae00;
+@keyframes redPulse {
+    0% {
+        box-shadow: 0 4px #b91c1c, 0 0 0 rgba(239, 68, 68, 0);
     }
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #ffea00, 0 0 15px #ffae00;
+    50% {
+        box-shadow: 0 4px #b91c1c, 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+    100% {
+        box-shadow: 0 4px #b91c1c, 0 0 0 rgba(239, 68, 68, 0);
     }
 }
 
 .delete:hover {
-    background-color: #c82333;
-    box-shadow: 0 6px #b02e36;
+    background-color: #dc2626;
+    box-shadow: 0 6px #b91c1c;
 }
 
 .delete:active {
-    background-color: #bd2130;
-    box-shadow: 0 0 #b02e36;
+    background-color: #b91c1c;
+    box-shadow: 0 0 #b91c1c;
 }
 
 .complete {
-    background-color: #28a745;
-    box-shadow: 0 4px #1e7e34;
-    animation: greenPulse 2s infinite ease-in-out;
+    background-color: #10b981; /* Modern Emerald */
+    box-shadow: 0 4px #047857;
+    animation: greenPulse 3s infinite ease-in-out;
 }
 
 @keyframes greenPulse {
     0% {
-        text-shadow:
-                0 0 4px #fff,
-                0 0 10px #fff,
-                0 0 15px #28a745;
+        box-shadow: 0 4px #047857, 0 0 0 rgba(16, 185, 129, 0);
     }
     50% {
-        text-shadow:
-                0 0 8px #fff,
-                0 0 20px #28a745,
-                0 0 40px #28a745,
-                0 0 50px #1e7e34;
+        box-shadow: 0 4px #047857, 0 0 10px rgba(16, 185, 129, 0.5);
     }
     100% {
-        text-shadow:
-                0 0 4px #fff,
-                0 0 10px #fff,
-                0 0 15px #28a745;
+        box-shadow: 0 4px #047857, 0 0 0 rgba(16, 185, 129, 0);
     }
 }
 
 .complete:hover {
-    background-color: #218838;
-    box-shadow: 0 6px #1e7e34;
+    background-color: #059669;
+    box-shadow: 0 6px #047857;
 }
 
 .complete:active {
-    background-color: #1e7e34;
-    box-shadow: 0 0 #1e7e34;
+    background-color: #047857;
+    box-shadow: 0 0 #047857;
 }
 
 .incomplete {
-    background-color: #ffc107;
-    box-shadow: 0 4px #d39e00;
-    color: #212529;
-    animation: yellowPulse 2s infinite ease-in-out;
+    background-color: #f59e0b; /* Modern Amber */
+    box-shadow: 0 4px #b45309;
+    color: #fff;
+    animation: yellowPulse 3s infinite ease-in-out;
 }
 
 @keyframes yellowPulse {
     0% {
-        text-shadow:
-                0 0 4px #fff,
-                0 0 10px #fff,
-                0 0 15px #ffc107;
+        box-shadow: 0 4px #b45309, 0 0 0 rgba(245, 158, 11, 0);
     }
     50% {
-        text-shadow:
-                0 0 8px #fff,
-                0 0 20px #ffc107,
-                0 0 40px #ffc107,
-                0 0 50px #d39e00;
+        box-shadow: 0 4px #b45309, 0 0 10px rgba(245, 158, 11, 0.5);
     }
     100% {
-        text-shadow:
-                0 0 4px #fff,
-                0 0 10px #fff,
-                0 0 15px #ffc107;
+        box-shadow: 0 4px #b45309, 0 0 0 rgba(245, 158, 11, 0);
     }
 }
 
 .incomplete:hover {
-    background-color: #e0a800;
-    box-shadow: 0 6px #d39e00;
+    background-color: #d97706;
+    box-shadow: 0 6px #b45309;
 }
 
 .incomplete:active {
-    background-color: #d39e00;
-    box-shadow: 0 0 #d39e00;
+    background-color: #b45309;
+    box-shadow: 0 0 #b45309;
 }

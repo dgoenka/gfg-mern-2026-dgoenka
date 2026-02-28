@@ -41,20 +41,24 @@ const ListItem = React.memo(({  index }) => {
                     onBeforeInput={onBeforeInput}
                     dangerouslySetInnerHTML={{__html: item.text}}
                 />
-                <button
-                    className={isComplete ? "incomplete" : "complete"}
-                    onClick={() => toggleStatus(index)}
-                    contentEditable="false"
-                >
-                    {isComplete ? '✅' : '☑️'}
-                </button>
-                <button
-                    className="delete"
-                    onClick={() => onDelete(index)}
-                    contentEditable="false"
-                >
-                    🗑
-                </button>
+                <div className="action-buttons">
+                    <button
+                        className={isComplete ? "incomplete" : "complete"}
+                        onClick={() => toggleStatus(index)}
+                        contentEditable="false"
+                        title={isComplete ? "Mark as Incomplete" : "Mark as Done"}
+                    >
+                        {isComplete ? '✅' : '☑️'}
+                    </button>
+                    <button
+                        className="delete"
+                        onClick={() => onDelete(index)}
+                        contentEditable="false"
+                        title="Delete"
+                    >
+                        🗑
+                    </button>
+                </div>
             </div>
         </li>
     );
