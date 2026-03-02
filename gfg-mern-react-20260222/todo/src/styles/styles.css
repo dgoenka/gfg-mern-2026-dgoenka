@@ -18,8 +18,8 @@
     min-height: 100vh;
 }
 
-/* Fixed Bottom Fade */
-.App::after {
+/* Fixed Bottom Fade - Only show when .scroll-bottom class is present */
+.App.scroll-bottom::after {
     content: "";
     position: fixed;
     bottom: 0;
@@ -29,6 +29,23 @@
     background: linear-gradient(to top, #f8f9fa 20%, rgba(248, 249, 250, 0));
     pointer-events: none;
     z-index: 900;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide bottom fade when not scrolling */
+.App:not(.scroll-bottom)::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, #f8f9fa 20%, rgba(248, 249, 250, 0));
+    pointer-events: none;
+    z-index: 900;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .top {
@@ -45,9 +62,15 @@
     -webkit-backdrop-filter: blur(8px);
     z-index: 1000;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
 }
 
-/* Sticky Top Fade (attached to the header) */
+/* Add shadow to header only when scrolling down */
+.App.scroll-top .top {
+    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.1);
+}
+
+/* Sticky Top Fade (attached to the header) - Only show when .scroll-top class is present */
 .top::after {
     content: "";
     position: absolute;
@@ -58,6 +81,12 @@
     background: linear-gradient(to bottom, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
     pointer-events: none;
     z-index: 900;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.App.scroll-top .top::after {
+    opacity: 1;
 }
 
 .appheader{
